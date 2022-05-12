@@ -12,13 +12,14 @@ export default function Meme() {
      * - Below the div.form, add an <img /> and set the
      *   src to the new `memeImage` state you created
      */
+    const [memeImg, setMemeImg] = useState('')
     
     function getMemeImage() {
         const memesArray = memesData.data.memes
         const randomNumber = Math.floor(Math.random() * memesArray.length)
-        // memesArray[randomNumber].url  <-- this line is incomplete!
-        
+        setMemeImg(memesArray[randomNumber].url)
     }
+
     
     return (
         <main>
@@ -41,6 +42,7 @@ export default function Meme() {
                 </button>
             </div>
             
+            <img src={memeImg} />
         </main>
     )
 }
