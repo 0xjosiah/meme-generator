@@ -60,3 +60,10 @@ main {
   border: none;
   cursor: pointer;
 }
+
+.meme--img {
+  display: block;
+  width: auto;
+  height: 60vh;
+  margin: 2.5em auto;
+}
