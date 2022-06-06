@@ -12,12 +12,21 @@ export default function Meme() {
      * - Below the div.form, add an <img /> and set the
      *   src to the new `memeImage` state you created
      */
-    const [memeImg, setMemeImg] = useState('')
+    // const [memeImg, setMemeImg] = useState('http://i.imgflip.com/1bij.jpg')
+    const [allMemeImages, setAllMemeImages] = useState(memesData)
+    const [meme, setMeme] = useState({
+        topText: '',
+        bottomText: '',
+        randomImg: 'http://i.imgflip.com/1bij.jpg'
+    })
     
     function getMemeImage() {
-        const memesArray = memesData.data.memes
+        const memesArray = allMemeImages.data.memes
         const randomNumber = Math.floor(Math.random() * memesArray.length)
-        setMemeImg(memesArray[randomNumber].url)
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            randomImg: memesArray[randomNumber].url
+        }))
     }
 
     
@@ -28,6 +37,7 @@ export default function Meme() {
                     type="text"
                     placeholder="Top text"
                     className="form--input"
+                    // onKeyUp={}
                 />
                 <input 
                     type="text"
@@ -42,7 +52,9 @@ export default function Meme() {
                 </button>
             </div>
 
-            <img className="meme--img" src={memeImg} />
+            <img className="meme--img" src={meme.randomImg} />
+            <div className="meme--top-text">{meme.topText}</div>
+            <div className="meme--bottom-text">{meme.bottomText}</div>
         </main>
     )
 }
