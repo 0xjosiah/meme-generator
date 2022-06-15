@@ -18,18 +18,18 @@ export default function Meme() {
         }))
     }
 
-    const setTopText = event => {
-        setMeme(prevMeme => ({
-            ...prevMeme,
-            topText: event.target.value
-        }))
-    }
-
-    const setBottomText = event => {
-        setMeme(prevMeme => ({
-            ...prevMeme,
-            bottomText: event.target.value
-        }))
+    const setText = event => {
+        if (event.target.name === 'topText') {
+            setMeme(prevMeme => ({
+                ...prevMeme,
+                topText: event.target.value
+            }))
+        } else {
+            setMeme(prevMeme => ({
+                ...prevMeme,
+                bottomText: event.target.value
+            }))
+        }
     }
 
     return (
@@ -39,13 +39,15 @@ export default function Meme() {
                     type="text"
                     placeholder="Top text"
                     className="form--input"
-                    onChange={setTopText}
+                    onChange={setText}
+                    name="topText"
                 />
                 <input 
                     type="text"
                     placeholder="Bottom text"
                     className="form--input"
-                    onChange={setBottomText}
+                    onChange={setText}
+                    name="bottomText"
                 />
                 <button 
                     className="form--button"
