@@ -68,3 +68,14 @@ main {
   height: 60vh;
   margin: 2.5em auto;
 }
+
+.meme--top-text {
+  display: absolute;
+  z-index: 10;
+  text-align: center;
+  top: 20%;
+}
+.meme--bottom-text {
+  display: relative;
+  z-index: 10;
+}

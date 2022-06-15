@@ -2,17 +2,6 @@ import { useState } from "react"
 import memesData from "../memesData.js"
 
 export default function Meme() {
-    /**
-     * Challenge: Save the random meme URL in state
-     * - Create new state called `memeImage` with an
-     *   empty string as default
-     * - When the getMemeImage function is called, update
-     *   the `memeImage` state to be the random chosen
-     *   image URL
-     * - Below the div.form, add an <img /> and set the
-     *   src to the new `memeImage` state you created
-     */
-    // const [memeImg, setMemeImg] = useState('http://i.imgflip.com/1bij.jpg')
     const [allMemeImages, setAllMemeImages] = useState(memesData)
     const [meme, setMeme] = useState({
         topText: '',
@@ -29,7 +18,20 @@ export default function Meme() {
         }))
     }
 
-    
+    const setTopText = event => {
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            topText: event.target.value
+        }))
+    }
+
+    const setBottomText = event => {
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            bottomText: event.target.value
+        }))
+    }
+
     return (
         <main>
             <div className="form">
@@ -37,12 +39,13 @@ export default function Meme() {
                     type="text"
                     placeholder="Top text"
                     className="form--input"
-                    // onKeyUp={}
+                    onChange={setTopText}
                 />
                 <input 
                     type="text"
                     placeholder="Bottom text"
                     className="form--input"
+                    onChange={setBottomText}
                 />
                 <button 
                     className="form--button"
