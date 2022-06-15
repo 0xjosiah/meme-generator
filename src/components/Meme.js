@@ -19,17 +19,10 @@ export default function Meme() {
     }
 
     const setText = event => {
-        if (event.target.name === 'topText') {
-            setMeme(prevMeme => ({
-                ...prevMeme,
-                topText: event.target.value
-            }))
-        } else {
-            setMeme(prevMeme => ({
-                ...prevMeme,
-                bottomText: event.target.value
-            }))
-        }
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            [event.target.name]: event.target.value
+        }))
     }
 
     return (
