@@ -9,7 +9,7 @@ export default function Meme() {
         randomImg: 'http://i.imgflip.com/1bij.jpg'
     })
     
-    function getMemeImage() {
+    const getMemeImage = () => {
         const memesArray = allMemeImages.data.memes
         const randomNumber = Math.floor(Math.random() * memesArray.length)
         setMeme(prevMeme => ({
@@ -19,9 +19,10 @@ export default function Meme() {
     }
 
     const setText = event => {
+        const {name, value} = event.target
         setMeme(prevMeme => ({
             ...prevMeme,
-            [event.target.name]: event.target.value
+            [name]: value
         }))
     }
 
@@ -30,6 +31,7 @@ export default function Meme() {
             <div className="form">
                 <input 
                     type="text"
+                    value={meme.topText}
                     placeholder="Top text"
                     className="form--input"
                     onChange={setText}
@@ -37,6 +39,7 @@ export default function Meme() {
                 />
                 <input 
                     type="text"
+                    value={meme.bottomText}
                     placeholder="Bottom text"
                     className="form--input"
                     onChange={setText}
@@ -50,9 +53,11 @@ export default function Meme() {
                 </button>
             </div>
 
-            <img className="meme--img" src={meme.randomImg} />
-            <div className="meme--top-text">{meme.topText}</div>
-            <div className="meme--bottom-text">{meme.bottomText}</div>
+            <div className="meme">
+                <img src={meme.randomImg} className="meme--image" />
+                <h2 className="meme--text top">{meme.topText}</h2>
+                <h2 className="meme--text bottom">{meme.bottomText}</h2>
+            </div>
         </main>
     )
 }
